@@ -3,67 +3,47 @@
 const { sequelize } = require('./sequelize');
 
 const insert = async (model, data) => {
-  try {
-    await sequelize.authenticate();
-    await model.sync();
-    await model.create(data);
-  } catch (error) {
-    console.error(`Error : ${error.message}`);
-  }
+  await sequelize.authenticate();
+  await model.sync();
+  await model.create(data);
 };
 
 const selectAll = async (model) => {
-  try {
-    await sequelize.authenticate();
-    await model.sync();
-    const data = await model.findAll();
-    return data;
-  } catch (error) {
-    return error.message;
-  }
+  await sequelize.authenticate();
+  await model.sync();
+  const data = await model.findAll();
+  return data;
 };
 
 const selectOne = async (model, id) => {
-  try {
-    await sequelize.authenticate();
-    await model.sync();
-    const data = await model.findAll({
-      where: {
-        id,
-      },
-    });
-    return data;
-  } catch (error) {
-    return error.message;
-  }
+  await sequelize.authenticate();
+  await model.sync();
+  const data = await model.findAll({
+    where: {
+      id,
+    },
+  });
+  return data;
 };
 
 const edit = async (model, id, data) => {
-  try {
-    await sequelize.authenticate();
-    await model.sync();
-    await model.update(data, {
-      where: {
-        id,
-      },
-    });
-  } catch (error) {
-    console.error(error.message);
-  }
+  await sequelize.authenticate();
+  await model.sync();
+  await model.update(data, {
+    where: {
+      id,
+    },
+  });
 };
 
 const deleteOne = async (model, id) => {
-  try {
-    await sequelize.authenticate();
-    await model.sync();
-    await model.destroy({
-      where: {
-        id,
-      },
-    });
-  } catch (error) {
-    console.error(error.message);
-  }
+  await sequelize.authenticate();
+  await model.sync();
+  await model.destroy({
+    where: {
+      id,
+    },
+  });
 };
 
 module.exports = {
